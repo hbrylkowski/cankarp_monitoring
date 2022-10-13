@@ -7,7 +7,6 @@ services:
       - "80:80"
       - "8157:8080"
     restart: always
-    user: "1000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik/config/traefik.yml:/etc/traefik/traefik.yml
