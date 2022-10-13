@@ -15,7 +15,6 @@ services:
     ports:
       - "3000:3000"
     restart: always
-    user: "1000"
     volumes:
        - ./grafana/data/:/var/lib/grafana/
        - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
