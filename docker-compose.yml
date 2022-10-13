@@ -1,16 +1,5 @@
 version: "3.3"
 services:
-  traefik:
-    image: traefik:v2.9
-    container_name: traefik
-    ports:
-      - "80:80"
-      - "8157:8080"
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/config/traefik.yml:/etc/traefik/traefik.yml
-
   grafana:
     image: grafana/grafana
     ports:
@@ -20,7 +9,6 @@ services:
     volumes:
        - ./grafana/data/:/var/lib/grafana/
        - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
-
 
   loki:
     image: grafana/loki:2.6.1
@@ -32,3 +20,12 @@ services:
     volumes:
       - ./loki/config/config.yml:/etc/loki/local-config.yaml
       - ./loki/data/:/data/
+
+  promtail:
+    image: grafana/promtail:2.6.1
+    volumes:
+      - /var/log:/var/log
+      - ./promtail/config/config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    ports:
+      - 1514:1514
