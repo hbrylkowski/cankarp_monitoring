@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  traefik:
+    image: traefik:v2.9
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "8157:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/config/traefik.yml:/etc/traefik/traefik.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    restart: always
+    user: "1000"
+    volumes:
+       - ./grafana/data:/var/lib/grafana
+       - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
+
+
+  loki:
+    image: grafana/loki:2.6.1
+    restart: always
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki/config/config.yml:/etc/loki/local-config.yaml
+      - ./loki/data/:/data/
