@@ -15,7 +15,7 @@ cameras:
       track:
         - person
     record:
-      enabled: False
+      enabled: True
       events:
         retain:
           default: 5
@@ -39,7 +39,7 @@ cameras:
       track:
         - person
     record:
-      enabled: False
+      enabled: True
       events:
         retain:
           default: 5
