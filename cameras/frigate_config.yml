@@ -8,23 +8,6 @@ cameras:
           roles:
             - detect
             - record
-    detect:
-      width: 640
-      height: 360
-    objects:
-      track:
-        - person
-    record:
-      enabled: True
-      events:
-        retain:
-          default: 5
-    snapshots:
-      enabled: True
-      timestamp: False
-      bounding_box: True
-      retain:
-        default: 100
   softroom:
     ffmpeg:
       inputs:
@@ -32,25 +15,29 @@ cameras:
           roles:
             - detect
             - record
-    detect:
-      width: 640
-      height: 360
-    objects:
-      track:
-        - person
-    record:
-      enabled: True
-      events:
-        retain:
-          default: 5
-    snapshots:
-      enabled: True
-      timestamp: False
-      bounding_box: True
-      retain:
-        default: 100
-
 detectors:
   cpu1:
     type: cpu
     num_threads: 3
+
+detect:
+  width: 640
+  height: 360
+objects:
+  track:
+    - person
+record:
+  enabled: True
+  events:
+    pre_capture: 5
+    post_capture: 5
+    retain:
+      default: 5
+    objects:
+      - person
+snapshots:
+  enabled: True
+  timestamp: True
+  bounding_box: True
+  retain:
+    default: 100
