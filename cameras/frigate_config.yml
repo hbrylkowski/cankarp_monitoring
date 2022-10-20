@@ -1,0 +1,56 @@
+mqtt:
+  host: mqtt
+cameras:
+  lab_elektroniczny:
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_ELAB_RTSP}
+          roles:
+            - rtmp
+            - detect
+    detect:
+      width: 1280
+      height: 720
+    objects:
+      track:
+        - person
+    record:
+      enabled: False
+      events:
+        retain:
+          default: 5
+    snapshots:
+      enabled: True
+      timestamp: False
+      bounding_box: True
+      retain:
+        default: 100
+  softroom:
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_SOFTROOM_RTSP}
+          roles:
+            - rtmp
+            - detect
+    detect:
+      width: 1280
+      height: 720
+    objects:
+      track:
+        - person
+    record:
+      enabled: False
+      events:
+        retain:
+          default: 5
+    snapshots:
+      enabled: True
+      timestamp: False
+      bounding_box: True
+      retain:
+        default: 100
+
+detectors:
+  cpu1:
+    type: cpu
+    num_threads: 3

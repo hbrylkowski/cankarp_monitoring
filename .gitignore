@@ -1,2 +1,4 @@
 .idea
 **/data/
+cameras/auth/nginx.htpasswd
+cameras/.env
