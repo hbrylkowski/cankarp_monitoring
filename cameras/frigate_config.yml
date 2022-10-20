@@ -6,8 +6,8 @@ cameras:
       inputs:
         - path: rtsp://{FRIGATE_ELAB_RTSP}
           roles:
-            - rtmp
             - detect
+            - record
     detect:
       width: 1280
       height: 720
@@ -30,8 +30,8 @@ cameras:
       inputs:
         - path: rtsp://{FRIGATE_SOFTROOM_RTSP}
           roles:
-            - rtmp
             - detect
+            - record
     detect:
       width: 1280
       height: 720
