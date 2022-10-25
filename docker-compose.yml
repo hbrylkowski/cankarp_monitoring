@@ -35,3 +35,19 @@ services:
     command: -config.file=/etc/promtail/config.yml
     ports:
       - "1514:1514"
+
+  telegraf:
+    image: telegraf
+    restart: unless-stopped
+    user: "1000:1001"
+    environment:
+      - HOST_ETC=/hostfs/etc
+      - HOST_PROC=/hostfs/proc
+      - HOST_SYS=/hostfs/sys
+      - HOST_VAR=/hostfs/var
+      - HOST_RUN=/hostfs/run
+      - HOST_MOUNT_PREFIX=/hostfs
+    volumes:
+       - ./telegraf:/etc/telegraf/
+       - /var/run/docker.sock:/var/run/docker.sock:ro
+       - /:/hostfs:ro
