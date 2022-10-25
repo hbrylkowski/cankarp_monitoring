@@ -13,7 +13,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./frigate_config.yml:/config/config.yml:ro
-      - ./frigate/storage:/media/frigate
+      - /mnt/recordings/frigate:/media/frigate
       - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
         tmpfs:
