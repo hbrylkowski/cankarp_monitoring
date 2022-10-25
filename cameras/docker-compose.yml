@@ -21,6 +21,7 @@ services:
 
   nginx:
     image: "nginx:alpine"
+    restart: unless-stopped
     ports:
       - 8213:80
     volumes:
@@ -29,6 +30,6 @@ services:
 
   mqtt:
     image: eclipse-mosquitto
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
